@@ -2,4 +2,5 @@ language: c
 before_install: 
  - make dep
 script: make test
+sudo: required
  
