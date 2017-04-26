@@ -69,3 +69,29 @@ void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b
     mid->y = ((a->y + b->y) / 2.0 );
 
 }
+
+
+double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c){
+
+    /* Input Checks */
+    if(!a){
+        DEBUG(__FILE__, __LINE__, __func__, "'a' must not be NULL");
+        return -1;
+    }
+    if(!b){
+        DEBUG(__FILE__, __LINE__, __func__, "'b' must not be NULL");
+        return -1;
+    }
+    if(!c){
+        DEBUG(__FILE__, __LINE__, __func__, "'c' must not be NULL");
+        return -1;
+    }
+    /* Heron's equation */
+    double ab=coord_2d_dist(a,b);
+    double bc=coord_2d_dist(b,c);
+    double ac=coord_2d_dist(a,c);
+    double s=(ab+bc+ac)/2;
+    double area=sqrt(s*(s-ab)*(s-bc)*(s-ac));
+    return area;
+
+}
